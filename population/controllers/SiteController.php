@@ -3,13 +3,13 @@
 namespace app\controllers;
 
 use app\services\DatabaseService;
+use app\services\PopulationService;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use yii\web\UploadedFile;
 
 class SiteController extends Controller
 {
@@ -70,12 +70,31 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionInfo()
+    public function actionLoadByUrl()
     {
+        $params = Yii::$app->request->get();
         $service = new DatabaseService();
-        $service->setDataFromURL();
-       return 123;
+        $service->setDataFromURL($params['url']);
+        return json_encode(['upload' => true]);
+
     }
 
+    public function actionPopulation() {
+        $params = Yii::$app->request->get();
+        $service = new PopulationService();
+
+        return json_encode(['population' => $service->getPopulation($params)]);
+    }
+
+    public function actionUpload()
+    {
+        if (Yii::$app->request->isPost) {
+            $file = UploadedFile::getInstanceByName('data');
+            $service = new DatabaseService();
+            $service->setDataFromFile($file);
+            return json_encode(['upload' => true]);
+        }
+        return json_encode(['upload' => false]);
+    }
 
 }
