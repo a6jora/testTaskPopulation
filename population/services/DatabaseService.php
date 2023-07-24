@@ -10,7 +10,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use League\Csv\InvalidArgument;
 use League\Csv\Reader;
-use SplFileObject;
 
 class DatabaseService
 {

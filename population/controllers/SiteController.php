@@ -68,9 +68,9 @@ class SiteController extends Controller
     /**
      * Login action.
      *
-     * @return Response|string
+     * @return string
      */
-    public function actionLoadByUrl()
+    public function actionLoadByUrl(): string
     {
         $params = Yii::$app->request->get();
         $service = new DatabaseService();

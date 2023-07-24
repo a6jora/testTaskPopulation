@@ -17,7 +17,7 @@ use yii\widgets\Pjax;
             <div class="col-lg-4 mb-3">
                 <?= Html::dropDownList(
                     'prefecture',
-                    1,
+                    0,
                     ArrayHelper::map(Prefectures::find()->orderBy('prefecture_id')->all(), 'prefecture_id', 'prefecture_name'),
                     [
                         'prompt' => "Prefecture",
@@ -29,7 +29,7 @@ use yii\widgets\Pjax;
             <div class="col-lg-4 mb-3">
                 <?= Html::dropDownList(
                     'year',
-                    1,
+                    0,
                     ArrayHelper::map(Years::find()->orderBy('year_id')->all(), 'year_id', 'year'),
                     [
                         'prompt' => "Year",
