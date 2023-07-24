@@ -32,7 +32,8 @@ class DatabaseService
         }
     }
 
-    public function setDataFromFile($fileObject) {
+    public function setDataFromFile($fileObject): void
+    {
         try {
             $this->clearTables();
             $fileContent = file_get_contents($fileObject->tempName);

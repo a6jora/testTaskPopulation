@@ -79,14 +79,15 @@ class SiteController extends Controller
 
     }
 
-    public function actionPopulation() {
+    public function actionPopulation(): string
+    {
         $params = Yii::$app->request->get();
         $service = new PopulationService();
 
         return json_encode(['population' => $service->getPopulation($params)]);
     }
 
-    public function actionUpload()
+    public function actionUpload(): string
     {
         if (Yii::$app->request->isPost) {
             $file = UploadedFile::getInstanceByName('data');
